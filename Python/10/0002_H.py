@@ -2,6 +2,8 @@
 # coding=utf-8
 
 """
+Problem #2.
+
 This problem was asked by Uber.
 
 Given an array of integers, return a new array such that each element at index
