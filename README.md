@@ -1,4 +1,4 @@
-# Daily Coding Problems from [dailycodingproblem.com](dailycodingproblem.com)
+# Daily Coding Problems from [dailycodingproblem.com](https://dailycodingproblem.com)
 
 Solutions by Andrea Galloni
 
@@ -6,7 +6,6 @@ Solutions by Andrea Galloni
 - Python
 
 ## Problems:
----
 ### \#1 Easy
 
 This problem was recently asked by Google.
@@ -33,7 +32,26 @@ For example, if our input was `[1, 2, 3, 4, 5]`, the expected output would be `[
 
 ---
 
-### \#3
+### \#3 Medium
+
+This problem was asked by Google.
+
+Given the root to a binary tree, implement `serialize(root)`, which serializes the tree into a string, and `deserialize(s)`, which deserializesthe string back into the tree.
+
+For example, given the following Node class:
+```
+class Node:
+    def __init__(self, val, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+```
+The following test should pass:
+```
+node = Node('root', Node('left', Node('left.left')), Node('right'))
+assert deserialize(serialize(node)).left.left.val == 'left.left'
+```
+| [Python](Python/10/0003_M.py) | 
 
 ---
 
