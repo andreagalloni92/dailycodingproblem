@@ -27,6 +27,7 @@ assert deserialize(serialize(node)).left.left.val == 'left.left'
 
 from collections.abc import Iterator
 
+
 class Node:
     """Node Class."""
 
