@@ -70,7 +70,7 @@ class Node:
         return node
 
     @staticmethod
-    def _deserialize(value_iter: list) -> object:
+    def _deserialize(value_iter: iter) -> object:
         """Deserialize a string to an object [Better Code]."""
         current_value = next(value_iter)
 
