@@ -55,7 +55,7 @@ assert deserialize(serialize(node)).left.left.val == 'left.left'
 
 ---
 
-### \#4
+### \#4 Hard
 
 Given an array of integers, find the first missing positive integer in linear
 time and constant space. In other words, find the lowest positive integer that

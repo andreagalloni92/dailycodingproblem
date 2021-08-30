@@ -25,6 +25,7 @@ assert deserialize(serialize(node)).left.left.val == 'left.left'
 ```
 """
 
+from collections.abc import Iterator
 
 class Node:
     """Node Class."""
@@ -70,7 +71,7 @@ class Node:
         return node
 
     @staticmethod
-    def _deserialize(value_iter: iter) -> object:
+    def _deserialize(value_iter: Iterator) -> object:
         """Deserialize a string to an object [Better Code]."""
         current_value = next(value_iter)
 
