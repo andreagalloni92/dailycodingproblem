@@ -1,9 +1,11 @@
 # Daily Coding Problems from [dailycodingproblem.com](https://dailycodingproblem.com)
 
-Solutions by Andrea Galloni
+Solutions by Andrea Galloni, please feel free to push a pull request if you feel like there might be an improvement or any mistake. Thanks in advance. 
 
 **Languages**:
 - Python
+- ~~Julia~~ ?
+- ~~ErLan~~ ?
 
 ## Problems:
 ### \#1 Easy
