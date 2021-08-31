@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # coding=utf-8
+from __future__ import annotations
 
 """
 Problem #3.
@@ -26,6 +27,7 @@ assert deserialize(serialize(node)).left.left.val == 'left.left'
 """
 
 from collections.abc import Iterator
+from io import StringIO
 
 
 class Node:
@@ -46,60 +48,46 @@ class Node:
         return self.__repr__()
 
     @staticmethod
-    def deserialize(serialized: str) -> str:
-        """Deserialize a string to an object."""
-        value_list = serialized.split('|')[:-1]
-        value_iter = (v for v in value_list)
-        return Node._deserialize(value_iter)
+    def deserialize(serialized: str) -> Node:
+        """Deserialize a string to a Node."""
+        def nodeTokenizer(serialized: str):
+            start = 0
+            for i, c in enumerate(serialized):
+                if c == "|":
+                    yield serialized[start:i]
+                    start = i + 1
+            yield serialized[start:]
+
+        tokens = nodeTokenizer(serialized)
+        return Node._deserialize(tokens)
 
     @staticmethod
-    def _deserialize(value_list: list) -> object:
-        """Deserialize a string to an object [First Approach]."""
-        node = Node(value_list.pop(0))
-
-        if value_list[0] != 'None':
-            node.left = Node._deserialize(value_list)
-        else:
-            node.left = None
-            value_list.pop(0)
-
-        if value_list[0] != 'None':
-            node.right = Node._deserialize(value_list)
-        else:
-            node.right = None
-            value_list.pop(0)
-
-        return node
-
-    @staticmethod
-    def _deserialize(value_iter: Iterator) -> object:
-        """Deserialize a string to an object [Better Code]."""
+    def _deserialize(value_iter: Iterator) -> Node:
         current_value = next(value_iter)
-
-        if current_value == 'None':
+        if current_value == '':
             return None
-        else:
-            node = Node(current_value)
-            node.left = Node._deserialize(value_iter)
-            node.right = Node._deserialize(value_iter)
+
+        node = Node(current_value)
+        node.left = Node._deserialize(value_iter)
+        node.right = Node._deserialize(value_iter)
 
         return node
 
-    def serialize(self, cum: str = "") -> str:
-        """Serialize an object to string."""
-        cum += f'{self.val}|'
+    def serialize(self: Node) -> str:
+        """Serialize a Node to string."""
+        buf = StringIO()
+        self._serialize(buf)
+        return buf.getvalue()
 
+    def _serialize(self, buf: StringIO):
+        buf.write(f'{self.val}|')
         if self.left:
-            cum = self.left.serialize(cum)
-        else:
-            cum += f"{None}|"
+            self.left._serialize(buf)
+        buf.write("|")
 
         if self.right:
-            cum = self.right.serialize(cum)
-        else:
-            cum += f"{None}|"
-
-        return cum
+            self.right._serialize(buf)
+        buf.write("|")
 
 
 if __name__ == "__main__":
